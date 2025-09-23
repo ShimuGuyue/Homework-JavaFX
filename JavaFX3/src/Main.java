@@ -14,6 +14,8 @@ public class Main extends Application {
     Scene scene_register;
     Scene scene_login;
     Scene scene_personal;
+    Scene scene_add;
+    Scene scene_view;
     Scene scene_book_in;
     Scene scene_book_out;
     Scene scene_bool_details;
@@ -29,6 +31,8 @@ public class Main extends Application {
         createRegisterScene(stage);
         createLoginScene(stage);
         createPersonalScene(stage);
+        createAddScene(stage);
+        createViewScene(stage);
         createBookInScene(stage);
         createBookOutScene(stage);
         createBookDetailsScene(stage);
@@ -150,6 +154,39 @@ public class Main extends Application {
     }
 
     public void createPersonalScene(Stage stage) {
+        Label title = new Label("个人中心");
+        title.setFont(javafx.scene.text.Font.font(24));
+
+        Button button_add    = new Button("添加账目");
+        Button button_view   = new Button("查看明细");
+        Button button_logout = new Button("退出登录");
+
+        button_add   .setOnAction(e ->
+            stage.setScene(scene_add)
+        );
+        button_view  .setOnAction(e ->
+            stage.setScene(scene_view)
+        );
+        button_logout.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("退出登录");
+            alert.setHeaderText(null);
+            alert.setContentText("已退出登录");
+            alert.showAndWait();
+            stage.setScene(scene_main);
+        });
+
+        VBox vbox = new VBox(20, title, button_add, button_view, button_logout);
+        vbox.setAlignment(Pos.CENTER);
+
+        scene_personal = new Scene(vbox, 800, 500);
+    }
+
+    public void createAddScene(Stage stage) {
+
+    }
+
+    public void createViewScene(Stage stage) {
 
     }
 
