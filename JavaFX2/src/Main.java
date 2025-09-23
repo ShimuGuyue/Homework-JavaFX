@@ -5,11 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class Main extends Application {
     static public void main(String[] args) {
@@ -17,8 +21,9 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
-//      start1(stage);
-        start2(stage);
+//      start1(stage)
+//      start2(stage);
+        start3(stage);
     }
 
     /**
@@ -85,6 +90,28 @@ public class Main extends Application {
             rect.setTranslateX(rect.getTranslateX() + dx);
             rect.setTranslateY(rect.getTranslateY() + dy);
         });
+
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    /**
+     *  编写图形化界面并实现MouseEvent处理
+     */
+    public void start3(Stage stage) {
+        BorderPane root = new BorderPane();
+
+        Circle circle = new Circle(100, Color.BLACK);
+        root.setCenter(circle);
+
+        Random rand = new Random();
+        circle.setOnMouseClicked(e -> {
+            Color randomColor = Color.color(rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
+            circle.setFill(randomColor);
+        });
+
+        Scene scene = new Scene(root, 400, 300);
 
         stage.setScene(scene);
 
