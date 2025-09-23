@@ -1,5 +1,10 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -37,7 +42,21 @@ public class Main extends Application {
     }
 
     public void createMainScene(Stage stage) {
+        Label title = new Label("记账盒子");
+        title.setFont(javafx.scene.text.Font.font(24));
 
+        Button button_register = new Button("账户注册");
+        Button button_login    = new Button("账户登录");
+        Button button_exit     = new Button("退出系统");
+
+        button_register.setOnAction(e -> stage.setScene(scene_register));
+        button_login   .setOnAction(e -> stage.setScene(scene_login));
+        button_exit    .setOnAction(e -> stage.setScene(scene_exit));
+
+        VBox vbox = new VBox(20, title, button_register, button_login, button_exit);
+        vbox.setAlignment(Pos.CENTER);
+
+        scene_main = new Scene(vbox, 800, 500);
     }
 
     public void createRegisterScene(Stage stage) {
