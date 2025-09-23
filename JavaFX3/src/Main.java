@@ -1,9 +1,11 @@
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -60,7 +62,50 @@ public class Main extends Application {
     }
 
     public void createRegisterScene(Stage stage) {
+        /* 注册信息 */
+        Label label_username = new Label("请输入账号：");
+        Label label_password = new Label("请输入密码：");
+        Label label_name     = new Label("请输入姓名：");
+        Label label_money    = new Label("请输入余额：");
+        TextField field_username = new TextField();
+        TextField field_password = new TextField();
+        TextField field_name     = new TextField();
+        TextField field_money    = new TextField();
 
+        HBox row_username = new HBox(10, label_username, field_username);
+        HBox row_password = new HBox(10, label_password, field_password);
+        HBox row_name     = new HBox(10, label_name,     field_name);
+        HBox row_money    = new HBox(10, label_money,    field_money);
+
+        row_username.setAlignment(Pos.CENTER);
+        row_password.setAlignment(Pos.CENTER);
+        row_name    .setAlignment(Pos.CENTER);
+        row_money   .setAlignment(Pos.CENTER);
+
+        /* 按钮 */
+        Button button_back     = new Button("返回");
+        Button button_register = new Button("注册");
+        button_back.    setOnAction(e ->
+            stage.setScene(scene_main)
+        );
+        button_register.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("注册成功");
+            alert.setHeaderText(null);
+            alert.setContentText("注册成功！");
+            alert.showAndWait();
+            stage.setScene(scene_main);
+        });
+
+        HBox buttonBox = new HBox(30, button_back, button_register);
+        buttonBox.setAlignment(Pos.CENTER);
+
+
+
+        VBox vbox = new VBox(20, row_username, row_password, row_name, row_money, buttonBox);
+        vbox.setAlignment(Pos.CENTER);
+
+        scene_register = new Scene(vbox, 800, 500);
     }
 
     public void createLoginScene(Stage stage) {
