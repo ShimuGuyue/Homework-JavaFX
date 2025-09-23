@@ -13,6 +13,7 @@ public class Main extends Application {
     Scene scene_main;
     Scene scene_register;
     Scene scene_login;
+    Scene scene_personal;
     Scene scene_book_in;
     Scene scene_book_out;
     Scene scene_bool_details;
@@ -27,6 +28,7 @@ public class Main extends Application {
         createMainScene(stage);
         createRegisterScene(stage);
         createLoginScene(stage);
+        createPersonalScene(stage);
         createBookInScene(stage);
         createBookOutScene(stage);
         createBookDetailsScene(stage);
@@ -109,6 +111,45 @@ public class Main extends Application {
     }
 
     public void createLoginScene(Stage stage) {
+        /* 登录信息 */
+        Label label_username = new Label("请输入账号：");
+        Label label_password = new Label("请输入密码：");
+        TextField field_username = new TextField();
+        TextField field_password = new TextField();
+
+        HBox row_username = new HBox(10, label_username, field_username);
+        HBox row_password = new HBox(10, label_password, field_password);
+
+        row_username.setAlignment(Pos.CENTER);
+        row_password.setAlignment(Pos.CENTER);
+
+        /* 按钮 */
+        Button button_back  = new Button("返回");
+        Button button_login = new Button("登录");
+        button_back. setOnAction(e ->
+                stage.setScene(scene_main)
+        );
+        button_login.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("登录成功");
+            alert.setHeaderText(null);
+            alert.setContentText("登录成功！");
+            alert.showAndWait();
+            stage.setScene(scene_personal);
+        });
+
+        HBox buttonBox = new HBox(30, button_back, button_login);
+        buttonBox.setAlignment(Pos.CENTER);
+
+
+
+        VBox vbox = new VBox(20, row_username, row_password, buttonBox);
+        vbox.setAlignment(Pos.CENTER);
+
+        scene_login = new Scene(vbox, 800, 500);
+    }
+
+    public void createPersonalScene(Stage stage) {
 
     }
 
