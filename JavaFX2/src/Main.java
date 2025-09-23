@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -27,7 +30,8 @@ public class Main extends Application {
 //      start2(stage);
 //      start3(stage);
 //      start4(stage);
-        start5(stage);
+//      start5(stage);
+        start6(stage);
     }
 
     /**
@@ -171,5 +175,48 @@ public class Main extends Application {
         stage.setScene(new Scene(root, 400, 300));
 
         stage.show();
+    }
+
+    /**
+     *  编写图形化界面并实现简单动画
+     */
+    public void start6(Stage stage) {
+        BorderPane root = new BorderPane();
+
+        Circle circle = new Circle(30, Color.BLUE);
+        root.setCenter(circle);
+        BorderPane.setAlignment(circle, Pos.TOP_LEFT);
+
+
+        Timeline timeline = new Timeline();
+        double step = 8;
+        double interval = 1000.0 / 60;  // 每秒帧数
+        double duration = 1000;         // 每次水平移动持续时间
+        double moveY = 60;              // 每次下移距离
+        final double[] elapsed = {0};
+
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(interval), e -> {
+            circle.setTranslateX(circle.getTranslateX() + step);
+            elapsed[0] += interval;
+
+            if (elapsed[0] >= duration) {
+                Circle dot = new Circle(30, Color.RED);
+                dot.setCenterX(circle.getLayoutX() + circle.getTranslateX());
+                dot.setCenterY(circle.getLayoutY() + circle.getTranslateY());
+                root.getChildren().add(dot);
+
+                circle.setTranslateX(0);
+                circle.setTranslateY(circle.getTranslateY() + moveY);
+                elapsed[0] = 0;
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+
+        Scene scene = new Scene(root, 800, 500);
+        stage.setScene(scene);
+        stage.show();
+
+        timeline.play();
     }
 }
