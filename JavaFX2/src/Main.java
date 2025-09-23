@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -16,11 +17,12 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
-        start1(stage);
+//      start1(stage);
+        start2(stage);
     }
 
     /**
-     *  编写图形化界面并实现ActionEvent时事件处理；
+     *  编写图形化界面并实现ActionEvent时事件处理
      */
     public void start1(Stage stage) {
         String str_normal = "这是一段普通文本";
@@ -52,6 +54,37 @@ public class Main extends Application {
         root.setCenter(label);
 
         Scene scene = new Scene(root, 400, 300);
+
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    /**
+     *  编写图形化界面并实现KeyEvent处理
+     */
+    public void start2(Stage stage) {
+        BorderPane root = new BorderPane();
+
+        Rectangle rect = new Rectangle(50, 50);
+        rect.setTranslateX(0);
+        rect.setTranslateY(0);
+        root.setCenter(rect);
+
+        Scene scene = new Scene(root, 400, 300);
+
+        scene.setOnKeyPressed(e -> {
+            int dx = 0, dy = 0;
+            switch (e.getCode()) {
+                case W: dy = -20; break;
+                case S: dy =  20; break;
+                case A: dx = -20; break;
+                case D: dx =  20; break;
+                default: break;
+            }
+            rect.setTranslateX(rect.getTranslateX() + dx);
+            rect.setTranslateY(rect.getTranslateY() + dy);
+        });
 
         stage.setScene(scene);
 
