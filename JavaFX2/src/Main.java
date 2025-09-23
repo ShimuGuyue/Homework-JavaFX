@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -21,9 +24,10 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
-//      start1(stage)
+//      start1(stage);
 //      start2(stage);
-        start3(stage);
+//      start3(stage);
+        start4(stage);
     }
 
     /**
@@ -116,5 +120,27 @@ public class Main extends Application {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    /**
+     *  编写图形化界面并实现音频及视频处理
+     */
+    public void start4(Stage stage) {
+        BorderPane root = new BorderPane();
+
+        String videoPath = getClass().getResource("/video/以恋结缘.mp4").toExternalForm();
+        Media media = new Media(videoPath);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        root.setCenter(mediaView);
+
+        Scene scene = new Scene(root, 1200, 700);
+
+        stage.setScene(scene);
+
+        stage.show();
+
+        mediaPlayer.play();
     }
 }
