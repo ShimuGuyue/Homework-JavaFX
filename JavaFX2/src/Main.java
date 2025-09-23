@@ -1,8 +1,7 @@
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
@@ -27,7 +26,8 @@ public class Main extends Application {
 //      start1(stage);
 //      start2(stage);
 //      start3(stage);
-        start4(stage);
+//      start4(stage);
+        start5(stage);
     }
 
     /**
@@ -142,5 +142,34 @@ public class Main extends Application {
         stage.show();
 
         mediaPlayer.play();
+    }
+
+    /**
+     *  编写图形化界面并实现菜单处理功能
+     */
+    public void start5(Stage stage) {
+        BorderPane root = new BorderPane();
+
+        MenuBar menuBar = new MenuBar();
+
+        Menu fileMenu = new Menu("文件");
+        MenuItem exitItem = new MenuItem("退出");
+        exitItem.setOnAction(e -> stage.close());
+        fileMenu.getItems().add(exitItem);
+
+        Menu helpMenu = new Menu("帮助");
+        MenuItem aboutItem = new MenuItem("关于");
+        aboutItem.setOnAction(e -> {    // 弹窗显示
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "这是一个菜单示例");
+            alert.showAndWait();
+        });
+        helpMenu.getItems().add(aboutItem);
+
+        menuBar.getMenus().addAll(fileMenu, helpMenu);
+        root.setTop(menuBar);
+
+        stage.setScene(new Scene(root, 400, 300));
+
+        stage.show();
     }
 }
