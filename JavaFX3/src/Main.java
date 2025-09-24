@@ -17,10 +17,6 @@ public class Main extends Application {
     Scene scene_personal;
     Scene scene_add;
     Scene scene_view;
-    Scene scene_book_in;
-    Scene scene_book_out;
-    Scene scene_bool_details;
-    Scene scene_logout;
     Scene scene_exit;
 
     public static void main(String[] args) {
@@ -34,11 +30,6 @@ public class Main extends Application {
         createPersonalScene(stage);
         createAddScene(stage);
         createViewScene(stage);
-        createBookInScene(stage);
-        createBookOutScene(stage);
-        createBookDetailsScene(stage);
-        createLogoutScene(stage);
-        createExitScene(stage);
 
         stage.setTitle("记账盒子");
         stage.setScene(scene_main);
@@ -221,30 +212,18 @@ public class Main extends Application {
             alert.showAndWait();
         });
 
-    }
-
-    public void createViewScene(Stage stage) {
-
-    }
         HBox row_button = new HBox(30, button_back, button_bookin, button_bookout);
         row_button.setAlignment(Pos.CENTER);
 
-    public void createBookInScene(Stage stage) {
         VBox vbox = new VBox(20, row_amount, row_way, row_button);
         vbox.setAlignment(Pos.CENTER);
 
         scene_add = new Scene(vbox, 800, 500);
     }
 
-    public void createBookOutScene(Stage stage) {
 
-    }
 
-    public void createBookDetailsScene(Stage stage) {
 
-    }
-
-    public void createLogoutScene(Stage stage) {
 
     }
 
