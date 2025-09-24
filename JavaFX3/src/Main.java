@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -183,15 +184,56 @@ public class Main extends Application {
     }
 
     public void createAddScene(Stage stage) {
+        Label label_amount = new Label("请输入金额：");
+        Label label_way    = new Label("请输入资金来源/用途描述：");
+        TextField field_amount = new TextField();
+        TextField field_way    = new TextField();
+
+        double width = 160;
+        label_amount.setMinWidth(width);
+        label_way   .setMinWidth(width);
+        field_amount.setMinWidth(width);
+        field_way   .setMinWidth(width);
+
+        HBox row_amount = new HBox(10, label_amount, field_amount);
+        HBox row_way    = new HBox(10, label_way, field_way);
+        row_amount.setAlignment(Pos.CENTER);
+        row_way   .setAlignment(Pos.CENTER);
+
+        Button button_back    = new Button("返回");
+        Button button_bookin  = new Button("收入");
+        Button button_bookout = new Button("支出");
+        button_back   .setOnAction(e ->
+                stage.setScene(scene_personal)
+        );
+        button_bookin.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("记账成功");
+            alert.setHeaderText(null);
+            alert.setContentText("记账成功");
+            alert.showAndWait();
+        });
+        button_bookout.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("记账成功");
+            alert.setHeaderText(null);
+            alert.setContentText("记账成功");
+            alert.showAndWait();
+        });
 
     }
 
     public void createViewScene(Stage stage) {
 
     }
+        HBox row_button = new HBox(30, button_back, button_bookin, button_bookout);
+        row_button.setAlignment(Pos.CENTER);
 
     public void createBookInScene(Stage stage) {
+        VBox vbox = new VBox(20, row_amount, row_way, row_button);
+        vbox.setAlignment(Pos.CENTER);
 
+        scene_add = new Scene(vbox, 800, 500);
     }
 
     public void createBookOutScene(Stage stage) {
