@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import static java.lang.System.exit;
+
 public class Main extends Application {
     Scene scene_main;
     Scene scene_register;
@@ -51,7 +53,7 @@ public class Main extends Application {
 
         button_register.setOnAction(e -> stage.setScene(scene_register));
         button_login   .setOnAction(e -> stage.setScene(scene_login));
-        button_exit    .setOnAction(e -> stage.setScene(scene_exit));
+        button_exit    .setOnAction(e -> createExitScene(stage));
 
         VBox vbox = new VBox(20, title, button_register, button_login, button_exit);
         vbox.setAlignment(Pos.CENTER);
@@ -245,6 +247,11 @@ public class Main extends Application {
     }
 
     public void createExitScene(Stage stage) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("退出系统");
+        alert.setHeaderText(null);
+        alert.setContentText("退出系统");
+        alert.showAndWait();
+        exit(0);
     }
 }
