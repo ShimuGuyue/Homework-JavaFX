@@ -221,10 +221,27 @@ public class Main extends Application {
         scene_add = new Scene(vbox, 800, 500);
     }
 
+    public void createViewScene(Stage stage) {
+        VBox textBox = new VBox(10);
+        textBox.getChildren().addAll(
+                new Label("id=l1，账户=2001，类型=收入，金额=20000.0，来源=发工资，日期=2021-10-30"),
+                new Label("id=l2，账户=2001，类型=支出，金额=300.0，  用途=打车  ，日期=2021-10-30")
+        );
 
+        Button button_back = new Button("返回");
+        button_back.setOnAction(e ->
+                stage.setScene(scene_personal)
+        );
 
+        HBox buttonBox = new HBox(button_back);
+        buttonBox.setAlignment(Pos.CENTER);
 
+        BorderPane root = new BorderPane();
+        root.setTop(textBox);
+        root.setBottom(buttonBox);
 
+        scene_view = new Scene(root, 800, 500);
+        stage.setScene(scene_view);
     }
 
     public void createExitScene(Stage stage) {
